@@ -18,6 +18,11 @@ INSERT INTO detalle_compra (producto_id, compra_id, cantidad) VALUES (9, 39, 5);
 UPDATE producto SET stock = stock - 5 WHERE id = 9;
 COMMIT;
 
+-- Consultas de las acciones anteriores
+SELECT * FROM compra WHERE cliente_id = 1;
+SELECT * FROM detalle_compra WHERE compra_id = 39;
+SELECT * FROM producto WHERE id = 9;
+
 -- El cliente usuario02 ha realizado la siguiente compra: [producto1 x 3, producto2 x 3, producto8 x 3], fecha
 
 BEGIN TRANSACTION;
@@ -29,7 +34,11 @@ INSERT INTO detalle_compra (producto_id, compra_id, cantidad) VALUES (8, 100, 3)
 UPDATE producto SET stock = stock - 3 WHERE id = 1;
 UPDATE producto SET stock = stock - 3 WHERE id = 2;
 
--- Se agregaron productos por que explota
+-- Consultando cual de los 3 productos quedó sin stock
+SELECT * FROM producto WHERE id = 1;
+SELECT * FROM producto WHERE id = 2;
+SELECT * FROM producto WHERE id = 8;
+-- Se agregaron productos por que el producto 8 se quedó sin stock
 
 UPDATE producto SET stock = 3 WHERE id = 8;
 UPDATE producto SET stock = stock - 3 WHERE id = 8;
